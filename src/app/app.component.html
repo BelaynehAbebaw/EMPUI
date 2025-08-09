@@ -1,30 +1,109 @@
-<header>
-  <mat-toolbar class="bg-blue-500 text-white flex justify-between items-center px-4">
-    <div class="flex items-center gap-2">
-      <button mat-icon-button (click)="drawer.toggle()" aria-label="Toggle sidenav">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span class="text-lg font-semibold">Emp</span>
-    </div>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-</header>
+<!-- app.component.html -->
 
-<mat-drawer-container > <!-- assuming toolbar height is 64px -->
-  <mat-drawer #drawer class="w-[360px] bg-red shadow" [mode]="'side'" [opened]="true" >
-    <div class="p-4">
-      <p class="font-medium">Drawer content</p>
-    </div>
+<mat-toolbar  class="mat-elevation-z4 header">
+   <img src="/assets/ECXLogo.jpg" height="50" width="50"/>
+  <button mat-icon-button (click)="drawer.toggle()" aria-label="Toggle sidebar">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My Application</span>
+ 
+
+</mat-toolbar>
+
+<mat-drawer-container class="app-container">
+  <mat-drawer #drawer mode="side" [opened]="isScreenLarge" class="custom-drawer">
+   <mat-nav-list>
+  <button mat-menu-item href="#" class="IconPushRight">
+    <mat-icon matListIcon>home</mat-icon>
+    <span>Dashboard</span>
+  </button>
+
+ <button mat-menu-item [matMenuTriggerFor]="reportMenu" class="menu-item-flex">
+    <mat-icon class="left-icon">assignment</mat-icon>
+ Report
+
+  <!-- <mat-icon>expand_more</mat-icon> -->
+</button>
+
+
+  <button mat-menu-item [matMenuTriggerFor]="settingsMenu" class="menu-item-flex">
+
+    <mat-icon>settings</mat-icon>
+   Settings
+    <!-- <mat-icon>expand_more</mat-icon> -->
+
+  </button>
+   </mat-nav-list>
+
   </mat-drawer>
 
-  <mat-drawer-content class="">
-    <main class="min-h-screen bg-red-500" style="background-color: rgb(114, 109, 119);">
-       Main content here
-      <p class="text-gray-700">Welcome to your dashboard!</p>
+  <mat-drawer-content>
+    <main class="main-content">
+      <!-- <router-outlet></router-outlet> -->
+      You can specify a different font, such as Material's latest icons, Material Symbols, by setting the fontSet input to either the CSS class to apply to use the desired font, or to an alias previously registered with MatIconRegistry.registerFontClassAlias. Alternatively you can set the default for all your application's icons using MatIconRegistry.setDefaultFontSetClass.
+
+ Font icons with CSS
+Fonts can also display icons by defining a CSS class for each icon glyph, which typically uses a :before selector to cause the icon to appear. Font Awesome uses this approach to display its icons. To use such a font, set the fontSet input to the font's CSS class (either the class itself or an alias registered with MatIconRegistry.registerFontClassAlias), and set the fontIcon input to the class for the specific icon to show.
+
+For both types of font icons, you can specify the default font class to use when fontSet is not explicitly set by calling MatIconRegistry.setDefaultFontSetClass.
     </main>
+    <footer class="app-footer">
+      &copy; 2025 ECX
+    </footer>
   </mat-drawer-content>
 </mat-drawer-container>
 
-<footer class="bg-blue-500 text-white text-center py-4">
-  &copy; 2025 Your Company
-</footer>
+<!-- Menus -->
+
+
+
+<mat-menu #reportMenu="matMenu">
+  <button mat-menu-item> Generate</button>
+  <button mat-menu-item><mat-icon>visibility</mat-icon>View</button>
+  <button mat-menu-item [matMenuTriggerFor]="exportMenu">
+    <mat-icon>file_upload</mat-icon>
+    Export
+  </button>
+</mat-menu>
+
+<mat-menu #exportMenu="matMenu">
+  <button mat-menu-item> <mat-icon>picture_as_pdf</mat-icon>PDF</button>
+  <button mat-menu-item> <mat-icon>grid_on</mat-icon>Excel</button>
+</mat-menu>
+
+<mat-menu #settingsMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    Profile
+    
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="securitySubMenu">
+    <mat-icon>security</mat-icon>
+    Security
+   <!-- <mat-icon>chevron_right</mat-icon> -->
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications</mat-icon>
+    Notifications
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-menu>
+<mat-menu #securitySubMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>vpn_key</mat-icon>
+    Change Password
+  </button>
+  <button mat-menu-item>
+    <mat-icon>verified_user</mat-icon>
+    Two-Factor Authentication
+  </button>
+  <button mat-menu-item>
+    <mat-icon>lock_reset</mat-icon>
+    Reset Security Questions
+  </button>
+</mat-menu>
+

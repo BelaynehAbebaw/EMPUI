@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mgui';
+   isScreenLarge = window.innerWidth > 768;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isScreenLarge = event.target.innerWidth > 768;
+  }
+
 }
