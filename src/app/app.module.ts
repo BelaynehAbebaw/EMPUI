@@ -18,11 +18,11 @@ import { RouterOutlet } from '@angular/router';
     BrowserModule,
     MatToolbarModule,
     MatIconModule,
-    // MatSidenavModule,
-    // MatButtonModule,
-    // MatMenuModule,
-    // MatListModule,
-    // RouterOutlet
+    MatSidenavModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatListModule,
+    RouterOutlet
   ],
   providers: [
     provideAnimationsAsync()
